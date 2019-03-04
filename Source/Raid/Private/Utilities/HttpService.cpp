@@ -1,7 +1,14 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "Raid.h"
 #include "HttpService.h"
+#include <random>
+#include "World/GameStats.h"
 #include "../../Public/Utilities/HttpService.h"
+
+std::random_device rd;     // only used once to initialise (seed) engine
+std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
+std::uniform_int_distribution<int> uni(1,999999999); // guaranteed unbiased
 
 
 // Sets default values
@@ -24,10 +31,17 @@ void AHttpService::BeginPlay()
 
 	FString testTitle = "unreal";
 	FString testDescription = "test unreal";
+	FString userName = "wiggles";
+
+	auto random_integer = uni(rng);
+	setSession(random_integer);
+	
 
 	FRequest_Login LoginCredentials;
 	LoginCredentials.title = testTitle;
 	LoginCredentials.description = testDescription;
+	LoginCredentials.userName = userName;
+	LoginCredentials.sessionId = random_integer;
 
 	Login(LoginCredentials);
 
@@ -49,9 +63,6 @@ void AHttpService::BeginPlay()
 }
 
 /**************************************************************************************************************************/
-
-
-
 
 TSharedRef<IHttpRequest> AHttpService::RequestWithRoute(FString Subroute) {
 	TSharedRef<IHttpRequest> Request = Http->CreateRequest();
@@ -117,7 +128,7 @@ void AHttpService::GetStructFromJsonString(FHttpResponsePtr Response, StructType
 
 
 /**************************************************************************************************************************/
-
+//Login - Starting Game
 
 
 //void AHttpService::Login(FRequest_Login LoginCredentials) {
@@ -146,6 +157,30 @@ void AHttpService::LoginResponse(FHttpRequestPtr Request, FHttpResponsePtr Respo
 
 	UE_LOG(LogTemp, Warning, TEXT("Id is: %d"), LoginResponse.id);
 	UE_LOG(LogTemp, Warning, TEXT("Name is: %s"), *LoginResponse.name);
+}
+
+/**************************************************************************************************************************/
+//Logout - Leaving game via "Q" key press
+
+void AHttpService::Logout(FString ContentJsonString) {
+	Http = &FHttpModule::Get();
+
+	TSharedRef<IHttpRequest> Request = PostRequest("worlds", ContentJsonString);
+	Request->OnProcessRequestComplete().BindUObject(this, &AHttpService::LoginResponse); //make another response if needed
+	Send(Request);
+}
+
+
+/**************************************************************************************************************************/
+
+int32 AHttpService::getSession()
+{
+	return session;
+}
+
+void AHttpService::setSession(int32 thisSession)
+{
+	session = thisSession;
 }
 
 // Called every frame

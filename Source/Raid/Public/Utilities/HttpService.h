@@ -2,22 +2,21 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+//#include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Runtime/Online/HTTP/Public/Http.h"
 #include "Json.h"
 #include "JsonUtilities.h"
 #include "HttpService.generated.h"
 
-//!!!
 //USTRUCT(s) should be moved to a different class
 USTRUCT()
 struct FRequest_Login {
 	GENERATED_BODY()
 	UPROPERTY() FString title;
 	UPROPERTY() FString description;
-	//UPROPERTY() FString email;
-//UPROPERTY() FString password;
+	UPROPERTY() FString userName;
+	UPROPERTY() int32 sessionId;
 
 	FRequest_Login() {}
 };
@@ -43,6 +42,8 @@ private:
 	FString AuthorizationHeader = TEXT("Authorization");
 	void SetAuthorizationHash(FString Hash, TSharedRef<IHttpRequest>& Request);
 
+	void EndPlay();
+
 	TSharedRef<IHttpRequest> RequestWithRoute(FString Subroute);
 	void SetRequestHeaders(TSharedRef<IHttpRequest>& Request);
 
@@ -57,8 +58,8 @@ private:
 	template <typename StructType>
 	void GetStructFromJsonString(FHttpResponsePtr Response, StructType& StructOutput);
 
-
-
+	int32 session;
+	   	  
 public:
 	AHttpService();
 	virtual void BeginPlay() override;
@@ -67,4 +68,10 @@ public:
 
 	void Login(FRequest_Login LoginCredentials);
 	void LoginResponse(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful);
+
+	void Logout(FString ContentJsonString);
+
+
+	int32 getSession();
+	void setSession(int32 thisSession);
 };

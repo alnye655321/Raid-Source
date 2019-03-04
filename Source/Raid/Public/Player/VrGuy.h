@@ -26,6 +26,31 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+		int32 WorldHits;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		int32 GetWorldHits();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		void SetWorldHits();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+		int32 WorldShotsFired;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		int32 GetWorldShotsFired();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		void SetWorldShotsFired();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+		int32 WorldKills;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		int32 GetWorldKills();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		void SetWorldKills(int32 NewWorldKills);
+	   		
 };

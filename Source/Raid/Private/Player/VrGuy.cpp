@@ -15,6 +15,10 @@ AVrGuy::AVrGuy()
 void AVrGuy::BeginPlay()
 {
 	Super::BeginPlay();
+
+	WorldHits = 0; //destruction mesh based
+	WorldShotsFired = 0;
+	WorldKills = 0;
 	
 }
 
@@ -30,5 +34,35 @@ void AVrGuy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+int32 AVrGuy::GetWorldHits()
+{
+	return WorldHits;
+}
+
+void AVrGuy::SetWorldHits()
+{
+	WorldHits = WorldHits++;
+}
+
+int32 AVrGuy::GetWorldShotsFired()
+{
+	return WorldShotsFired;
+}
+
+void AVrGuy::SetWorldShotsFired()
+{
+	WorldShotsFired = WorldShotsFired++;
+}
+
+int32 AVrGuy::GetWorldKills()
+{
+	return WorldKills;
+}
+
+void AVrGuy::SetWorldKills(int32 NewWorldKills)
+{
+	WorldKills = NewWorldKills;
 }
 
