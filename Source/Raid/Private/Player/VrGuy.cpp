@@ -19,6 +19,7 @@ void AVrGuy::BeginPlay()
 	WorldHits = 0; //destruction mesh based
 	WorldShotsFired = 0;
 	WorldKills = 0;
+	EnemyHits = 0;
 	
 }
 
@@ -64,5 +65,15 @@ int32 AVrGuy::GetWorldKills()
 void AVrGuy::SetWorldKills(int32 NewWorldKills)
 {
 	WorldKills = NewWorldKills;
+}
+
+int32 AVrGuy::GetEnemyHits()
+{
+	return EnemyHits;
+}
+
+void AVrGuy::SetEnemyHits()
+{
+	EnemyHits = EnemyHits++;
 }
 

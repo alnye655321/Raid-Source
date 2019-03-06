@@ -52,5 +52,14 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
 		void SetWorldKills(int32 NewWorldKills);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+		int32 EnemyHits;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		int32 GetEnemyHits();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		void SetEnemyHits();
 	   		
 };
