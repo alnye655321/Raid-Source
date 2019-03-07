@@ -51,6 +51,7 @@ void AGameStats::SendWorldStatsHttp()
 	int32 WorldShotsFired = 0;
 	int32 WorldKills = 0;
 	int32 EnemyHits = 0;
+	int32 WorldDamage = 0;
 
 	if (VrGuy != NULL)
 	{
@@ -58,6 +59,7 @@ void AGameStats::SendWorldStatsHttp()
 		WorldShotsFired = VrGuy->GetWorldShotsFired();
 		WorldKills = VrGuy->GetWorldKills();
 		EnemyHits = VrGuy->GetEnemyHits();
+		WorldDamage = VrGuy->GetWorldDamge();
 	}
 
 
@@ -77,6 +79,7 @@ void AGameStats::SendWorldStatsHttp()
 		LogoutCredentials.worldKills = WorldKills;
 		LogoutCredentials.gameTime = GetWorld()->GetTimeSeconds();
 		LogoutCredentials.enemyHits = EnemyHits;
+		LogoutCredentials.worldDamage = WorldDamage;
 
 		GetJsonStringFromStruct<FRequest_Logout>(LogoutCredentials, ContentJsonString);
 

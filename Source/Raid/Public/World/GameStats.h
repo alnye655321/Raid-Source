@@ -17,6 +17,7 @@ struct FRequest_Logout {
 	UPROPERTY() int32 worldKills;
 	UPROPERTY() float gameTime;
 	UPROPERTY() int32 enemyHits;
+	UPROPERTY() int32 worldDamage;
 
 	FRequest_Logout() {}
 };

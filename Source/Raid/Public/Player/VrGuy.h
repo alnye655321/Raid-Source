@@ -61,5 +61,14 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
 		void SetEnemyHits();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+		int32 WorldDamage;
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		int32 GetWorldDamge();
+
+	UFUNCTION(BlueprintCallable, Category = "PlayerStats")
+		void SetWorldDamge(int32 MoreWorldDamage);
 	   		
 };

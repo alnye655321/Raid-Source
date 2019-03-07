@@ -20,6 +20,7 @@ void AVrGuy::BeginPlay()
 	WorldShotsFired = 0;
 	WorldKills = 0;
 	EnemyHits = 0;
+	WorldDamage = 0;
 	
 }
 
@@ -75,5 +76,15 @@ int32 AVrGuy::GetEnemyHits()
 void AVrGuy::SetEnemyHits()
 {
 	EnemyHits = EnemyHits++;
+}
+
+int32 AVrGuy::GetWorldDamge()
+{
+	return WorldDamage;
+}
+
+void AVrGuy::SetWorldDamge(int32 MoreWorldDamage)
+{
+	WorldDamage += MoreWorldDamage;
 }
 
