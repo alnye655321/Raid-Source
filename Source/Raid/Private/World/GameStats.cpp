@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "GameStats.h"
 #include "Raid.h"
 #include "Utilities/HttpService.h"
 #include "Player/VrGuy.h"
 #include "Kismet/KismetMathLibrary.h"
-#include "GameStats.h"
 
 
 // Sets default values

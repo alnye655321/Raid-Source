@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Raid.h"
 #include "HttpService.h"
+#include "Raid.h"
 #include <random>
 #include "World/GameStats.h"
 #include "../../Public/Utilities/HttpService.h"
